@@ -19,7 +19,7 @@ $(document).on("click", "button", function() {
       $("#notes").append("<button type='button' class='btn btn-primary' data-id='" + data._id + "' id='savenote'>Save Note</button>");
       
       if (data.note) {
-        console.log(data.note);
+        // console.log(data.note);
         $("#titleinput").val(data.note.title);
         $("#bodyinput").val(data.note.body);
       }
@@ -32,7 +32,7 @@ $(document).on("click", "#savenote", function() {
   $.ajax({
     method: "POST",
     url: "/articles/" + thisId,
-    note: {
+    data: {
       title: $("#titleinput").val(),
       body: $("#bodyinput").val()
     }
