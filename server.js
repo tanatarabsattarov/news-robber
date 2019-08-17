@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/news_robber";
-mongoose.connect(MONGODB_URI);
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 app.get("/scrape", function (req, res) {
     axios.get("https://news.ycombinator.com/").then(function (response) {

@@ -32,7 +32,7 @@ $(document).on("click", "#savenote", function() {
   $.ajax({
     method: "POST",
     url: "/articles/" + thisId,
-    data: {
+    note: {
       title: $("#titleinput").val(),
       body: $("#bodyinput").val()
     }
