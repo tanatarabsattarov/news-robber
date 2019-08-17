@@ -12,13 +12,14 @@ $(document).on("click", "button", function() {
     url: "/articles/" + thisId
   })
     .then(function(data) {
-      console.log(data);
+      // console.log(data);
       $("#notes").append("<h3>" + data.title + "</h3>");
       $("#notes").append("<input id='titleinput' name='title' >");
       $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
       $("#notes").append("<button type='button' class='btn btn-primary' data-id='" + data._id + "' id='savenote'>Save Note</button>");
       
       if (data.note) {
+        console.log(data.note);
         $("#titleinput").val(data.note.title);
         $("#bodyinput").val(data.note.body);
       }
@@ -39,6 +40,7 @@ $(document).on("click", "#savenote", function() {
     .then(function(data) {
       console.log(data);
       $("#notes").empty();
+      $("#notes").append("<h2 class='text-center'>Note saved</h2>");
     });
   $("#titleinput").val("");
   $("#bodyinput").val("");
