@@ -1,6 +1,6 @@
 $.getJSON("/articles", function(data) {  
   for (var i = 0; i < data.length; i++) {
-    $("#articles").append("<div class='card m-4' style='width: 18rem;'><div class='card-body'><p><b>" + data[i].title + "</b><br />" + data[i].link + "</p><button data-id='" + data[i]._id + "' type='button' class='btn btn-primary' data-toggle='modal' data-target='#exampleModal'>Make a Note</button></div></div>");
+    $("#articles").append("<div class='card m-4' style='width: 18rem;'><div class='card-body d-flex flex-column'><p><b>" + data[i].title + "</b></p><a target='_blank'href="+ data[i].link +" class='mt-auto'><button type='button' class='btn btn-success w-100'>Link to sourse</button></a><button data-id='" + data[i]._id + "' type='button' class='btn btn-primary mt-1 w-100' data-toggle='modal' data-target='#exampleModal'>Make a Note</button></div></div>");
   }
 });
 
