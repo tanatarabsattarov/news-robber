@@ -1,10 +1,10 @@
 $.getJSON("/articles", function(data) {  
   for (var i = 0; i < data.length; i++) {
-    $("#articles").append("<div class='card m-4' style='width: 18rem;'><div class='card-body d-flex flex-column'><p><b>" + data[i].title + "</b></p><a target='_blank'href="+ data[i].link +" class='mt-auto'><button type='button' class='btn btn-success w-100'>Link to sourse</button></a><button data-id='" + data[i]._id + "' type='button' class='btn btn-primary mt-1 w-100' data-toggle='modal' data-target='#exampleModal'>Make a Note</button></div></div>");
+    $("#articles").append("<div class='card m-4' style='width: 18rem;'><div class='card-body d-flex flex-column'><p><b>" + data[i].title + "</b></p><a target='_blank'href="+ data[i].link +" class='mt-auto'><button type='button' class='btn btn-success w-100'>Link to sourse</button></a><button data-id='" + data[i]._id + "' type='button' class='btn btn-primary mt-1 w-100' data-toggle='modal' id='note_button' data-target='#exampleModal'>Make a Note</button></div></div>");
   }
 });
 
-$(document).on("click", "button", function() {  
+$(document).on("click", "#note_button", function() {  
   $("#notes").empty();
   var thisId = $(this).attr("data-id");
   $.ajax({
@@ -12,7 +12,7 @@ $(document).on("click", "button", function() {
     url: "/articles/" + thisId
   })
     .then(function(data) {
-      // console.log(data);
+      console.log(data);
       $("#notes").append("<h3>" + data.title + "</h3>");
       $("#notes").append("<input id='titleinput' name='title' >");
       $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
@@ -32,7 +32,7 @@ $(document).on("click", "#savenote", function() {
   $.ajax({
     method: "POST",
     url: "/articles/" + thisId,
-    data: {
+    data: { 
       title: $("#titleinput").val(),
       body: $("#bodyinput").val()
     }
@@ -45,7 +45,3 @@ $(document).on("click", "#savenote", function() {
   $("#titleinput").val("");
   $("#bodyinput").val("");
 });
-
-$('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').trigger('focus')
-})
